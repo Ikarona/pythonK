@@ -1,13 +1,7 @@
 from decimal import *
 def pi():
-    """Compute Pi to the current precision.
-
-    >>> print(pi())
-    3.141592653589793238462643383
-
-    """
-    getcontext().prec += 2000  # extra digits for intermediate steps
-    three = Decimal(3)      # substitute "three=3.0" for regular floats
+    getcontext().prec += 2000
+    three = Decimal(3)
     lasts, t, s, n, na, d, da = 0, three, 3, 1, 0, 0, 24
     while s != lasts:
         lasts = s
@@ -19,19 +13,6 @@ def pi():
     return +s
 
 def cos(x, prec):
-    """Return the cosine of x as measured in radians.
-
-    The Taylor series approximation works best for a small value of x.
-    For larger values, first compute x = x % (2 * pi).
-
-    >>> print(cos(Decimal('0.5')))
-    0.8775825618903727161162815826
-    >>> print(cos(0.5))
-    0.87758256189
-    >>> print(cos(0.5+0j))
-    (0.87758256189+0j)
-
-    """
     getcontext().prec += prec
     i, lasts, s, fact, num, sign = 0, 0, 1, 1, 1, 1
     while s != lasts:
@@ -45,19 +26,6 @@ def cos(x, prec):
     return +s
 
 def sin(x, prec):
-    """Return the sine of x as measured in radians.
-
-    The Taylor series approximation works best for a small value of x.
-    For larger values, first compute x = x % (2 * pi).
-
-    >>> print(sin(Decimal('0.5')))
-    0.4794255386042030002732879352
-    >>> print(sin(0.5))
-    0.479425538604
-    >>> print(sin(0.5+0j))
-    (0.479425538604+0j)
-
-    """
     getcontext().prec += prec
     i, lasts, s, fact, num, sign = 1, 0, x, 1, x, 1
     while s != lasts:
